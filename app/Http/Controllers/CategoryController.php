@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $list = Category::all();
+        return view('admincp.category.list', compact('list'));
     }
 
     /**
@@ -63,7 +64,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        $list = Category::all();
+        return view('admincp.category.create', compact('list', 'category'));
     }
 
     /**
@@ -75,7 +78,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $category = Category::find($id);
+        $category->title = $data['category_title'];
+        $category->description = $data['category_desc'];
+        $category->status = $data['category_status'];
+        $category->save();
+        return redirect()->back();
     }
 
     /**
