@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Genre;
 
 class GenreController extends Controller
 {
@@ -13,7 +14,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
+        $list = Genre::all();
+        return view('admincp.genre.list', compact('list'));
     }
 
     /**
@@ -23,7 +25,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admincp.genre.create');
     }
 
     /**
@@ -34,7 +36,14 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $genre = new Genre;
+        $genre->title = $data['genre_title'];
+        $genre->slug = $data['genre_slug'];
+        $genre->description = $data['genre_desc'];
+        $genre->status = $data['genre_status'];
+        $genre->save();
+        return redirect()->back();
     }
 
     /**
@@ -56,7 +65,8 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genre = Genre::find($id);
+        return view('admincp.genre.create', compact('genre'));
     }
 
     /**
@@ -68,7 +78,14 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $genre = Genre::find($id);
+        $genre->title = $data['genre_title'];
+        $genre->slug = $data['genre_slug'];
+        $genre->description = $data['genre_desc'];
+        $genre->status = $data['genre_status'];
+        $genre->save();
+        return redirect()->back();
     }
 
     /**
@@ -79,6 +96,7 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Genre::find($id)->delete();
+        return redirect()->back();
     }
 }

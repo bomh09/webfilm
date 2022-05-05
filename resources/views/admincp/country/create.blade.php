@@ -7,10 +7,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        @if(!isset($category))
-                            {{ __('Thêm danh mục') }}
+                        @if(!isset($country))
+                            {{ __('Thêm quốc gia') }}
                         @else
-                            {{ __('Sửa danh mục') }}
+                            {{ __('Sửa quốc gia') }}
                         @endif
                     </div>
 
@@ -20,31 +20,31 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        @if(!isset($category))
-                            {!! Form::open(['route' => 'category.store', 'method' => 'POST']) !!}
+                        @if(!isset($country))
+                            {!! Form::open(['route' => 'country.store', 'method' => 'POST']) !!}
                         @else
-                            {!! Form::open(['route' => ['category.update', $category->id], 'method' => 'PUT']) !!}
+                            {!! Form::open(['route' => ['country.update', $country->id], 'method' => 'PUT']) !!}
                         @endif
                             <div class="form-group">
-                                {!! Form::label(null, 'Tên danh mục') !!}
-                                {!! Form::text('category_title', isset($category) ? $category->title : "", ['class'=>'form-control slug', 'placeholder'=>'Tiêu đề']) !!}
+                                {!! Form::label(null, 'Tên quốc gia') !!}
+                                {!! Form::text('country_title', isset($country) ? $country->title : "", ['class'=>'form-control slug', 'placeholder'=>'Tên quốc gia']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label(null, 'Slug') !!}
-                                {!! Form::text('category_slug', isset($category) ? $category->slug : "", ['class'=>'form-control convert-slug', 'placeholder'=>'Slug']) !!}
+                                {!! Form::text('country_slug', isset($country) ? $country->slug : "", ['class'=>'form-control convert-slug', 'placeholder'=>'Slug']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label(null, 'Mô tả') !!}
-                                {!! Form::textarea('category_desc', isset($category) ? $category->description : "", ['class'=>'form-control', 'placeholder'=>'Mô tả']) !!}
+                                {!! Form::textarea('country_desc', isset($country) ? $country->description : "", ['class'=>'form-control', 'placeholder'=>'Mô tả']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label(null, 'Trạng thái') !!}
-                                {!! Form::select('category_status', ['1'=>'Hiển thị', '0'=>'Ẩn'], isset($category) ? $category->status : 1, ['class'=>'form-control custom-select']) !!}
+                                {!! Form::select('country_status', ['1'=>'Hiển thị', '0'=>'Ẩn'], isset($country) ? $country->status : 1, ['class'=>'form-control custom-select']) !!}
                             </div>
-                            @if(!isset($category))
-                                {!! Form::submit('Thêm danh mục', ['class' => 'btn btn-primary']) !!}
+                            @if(!isset($country))
+                                {!! Form::submit('Thêm quốc gia', ['class' => 'btn btn-primary']) !!}
                             @else
-                                {!! Form::submit('Sửa danh mục', ['class' => 'btn btn-primary']) !!}
+                                {!! Form::submit('Sửa quốc gia', ['class' => 'btn btn-primary']) !!}
                             @endif
                         {!! Form::close() !!}
                     </div>

@@ -39,6 +39,7 @@ class CategoryController extends Controller
         $data = $request->all();
         $category = new Category;
         $category->title = $data['category_title'];
+        $category->slug = $data['category_slug'];
         $category->description = $data['category_desc'];
         $category->status = $data['category_status'];
         $category->save();
@@ -81,6 +82,7 @@ class CategoryController extends Controller
         $data = $request->all();
         $category = Category::find($id);
         $category->title = $data['category_title'];
+        $category->slug = $data['category_slug'];
         $category->description = $data['category_desc'];
         $category->status = $data['category_status'];
         $category->save();

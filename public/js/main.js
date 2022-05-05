@@ -69,4 +69,31 @@ jQuery(document).ready(function() {
         .siblings()
         .find(".nav-link")
         .removeClass("active");
+
+    // Change title to slug
+    $('.slug').keyup(function() {
+        var slug;
+        slug = $(this).val();
+        slug = slug.toLowerCase();
+        slug = slug.replace(/á|à|ả|ạ|ã|ằ|ắ|ẳ|ẵ|ặ|ấ|ầ|ẩ|ậ|ẫ|â|ă/gi, "a");
+        slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ề|ế|ể|ễ|ệ/gi, "e");
+        slug = slug.replace(/ì|í|ỉ|ĩ|ị/gi, "i");
+        slug = slug.replace(/ò|ó|ỏ|ọ|õ|ơ|ờ|ớ|ở|ỡ|ợ|ô|ồ|ố|ổ|ỗ|ộ/gi, "o");
+        slug = slug.replace(/ù|ú|ủ|ũ|ụ|ư|ử|ừ|ứ|ữ|ự/gi, "u");
+        slug = slug.replace(/ỳ|ý|ỷ|ỵ|ỹ/gi, "y");
+        slug = slug.replace(/đ/gi, "d");
+        slug = slug.replace(
+            /\`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\;|\:|_/gi,
+            ""
+        );
+        slug = slug.replace(/ /gi, "-");
+        slug = slug.replace(/\-\-\-\-\-/gi, "-");
+        slug = slug.replace(/\-\-\-\-/gi, "-");
+        slug = slug.replace(/\-\-\-/gi, "-");
+        slug = slug.replace(/\-\-/gi, "-");
+        slug = "@" + slug + "@";
+        slug = slug.replace(/\@\-|\-\@|\@/gi, "");
+        console.log(slug);
+        $(".convert-slug").val(slug);
+    })
 });

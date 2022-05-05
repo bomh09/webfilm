@@ -77,9 +77,10 @@
             </ul>
         </nav>
 
-        @auth
+        @guest
+        @else
             @include('layouts.menu')
-        @endauth
+        @endguest
 
         <main class="content-wrapper">
             @yield('content')
